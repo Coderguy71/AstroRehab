@@ -1,15 +1,47 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import React, { useState } from 'react';
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  Button, 
+  Box, 
+  IconButton, 
+  Menu, 
+  MenuItem, 
+  useMediaQuery, 
+  useTheme
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
+  const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  const handleMenuOpen = (event) => {
+    setMobileMenuAnchor(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setMobileMenuAnchor(null);
+  };
+
+  const navItems = [
+    { text: 'What We Do', path: '/what-we-do' },
+    { text: 'Game Play Demo', path: '/gameplay' },
+    { text: 'Team', path: '/team' },
+    { text: 'Contact', path: '/contact' },
+    { text: 'Rehabilitation', path: '/rehabilitation' }
+  ];
+
   return (
     <AppBar position="static" sx={{
       background: 'linear-gradient(45deg, #3D365C 30%, #7C4585 90%)',
       boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
     }}>
-      <Toolbar>
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box
             component="img"
@@ -40,87 +72,87 @@ const Navbar = () => {
             AstroRehab
           </Typography>
         </Box>
-        <Box sx={{ ml: 4 }}>
-          <Button
-            component={RouterLink}
-            to="/what-we-do"
+        {/* Desktop Navigation */}
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+          {navItems.map((item) => (
+            <Button
+              key={item.path}
+              component={RouterLink}
+              to={item.path}
+              sx={{
+                color: '#F8B55F',
+                mx: 1,
+                '&:hover': {
+                  color: '#C95792',
+                  background: 'rgba(248, 181, 95, 0.1)',
+                  transform: 'translateY(-2px)'
+                },
+                transition: 'all 0.3s ease',
+              }}
+            >
+              {item.text}
+            </Button>
+          ))}
+        </Box>
+
+        {/* Mobile Menu Button */}
+        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+          <IconButton
+            size="large"
+            aria-label="menu"
+            aria-controls="mobile-menu"
+            aria-haspopup="true"
+            onClick={handleMenuOpen}
+            color="inherit"
             sx={{
               color: '#F8B55F',
-              mx: 1,
               '&:hover': {
                 color: '#C95792',
                 background: 'rgba(248, 181, 95, 0.1)',
-                transform: 'translateY(-2px)'
               },
-              transition: 'all 0.3s ease',
             }}
           >
-            What We Do
-          </Button>
-          <Button
-            component={RouterLink}
-            to="/gameplay"
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id="mobile-menu"
+            anchorEl={mobileMenuAnchor}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(mobileMenuAnchor)}
+            onClose={handleMenuClose}
             sx={{
-              color: '#F8B55F',
-              mx: 1,
-              '&:hover': {
-                color: '#C95792',
-                background: 'rgba(248, 181, 95, 0.1)',
-                transform: 'translateY(-2px)'
+              '& .MuiPaper-root': {
+                background: 'linear-gradient(45deg, #3D365C 30%, #7C4585 90%)',
+                color: '#F8B55F',
+                minWidth: '200px',
               },
-              transition: 'all 0.3s ease',
             }}
           >
-            Game Play Demo
-          </Button>
-          <Button 
-            component={RouterLink} 
-            to="/team"
-            sx={{
-              color: '#F8B55F',
-              mx: 1,
-              '&:hover': {
-                color: '#C95792',
-                background: 'rgba(248, 181, 95, 0.1)',
-                transform: 'translateY(-2px)'
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Team
-          </Button>
-          <Button 
-            component={RouterLink} 
-            to="/contact"
-            sx={{
-              color: '#F8B55F',
-              mx: 1,
-              '&:hover': {
-                color: '#C95792',
-                background: 'rgba(248, 181, 95, 0.1)',
-                transform: 'translateY(-2px)'
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Contact
-          </Button>
-          <Button 
-            component={RouterLink} 
-            to="/rehabilitation"
-            sx={{
-              color: '#F8B55F',
-              mx: 1,
-              '&:hover': {
-                color: '#C95792',
-                background: 'rgba(248, 181, 95, 0.1)',
-                transform: 'translateY(-2px)'
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Rehabilitation
-          </Button>
+            {navItems.map((item) => (
+              <MenuItem 
+                key={item.path} 
+                component={RouterLink} 
+                to={item.path}
+                onClick={handleMenuClose}
+                sx={{
+                  '&:hover': {
+                    color: '#C95792',
+                    background: 'rgba(248, 181, 95, 0.1)',
+                  },
+                }}
+              >
+                {item.text}
+              </MenuItem>
+            ))}
+          </Menu>
         </Box>
       </Toolbar>
     </AppBar>
