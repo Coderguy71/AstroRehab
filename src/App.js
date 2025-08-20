@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import GamePlayDemo from './components/GamePlayDemo';
+import WhatWeDo from './components/WhatWeDo';
+import Team from './components/Team';
+import Contact from './components/Contact';
+import Rehabilitation from './components/Rehabilitation';
+import theme from './theme';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/gameplay" element={<GamePlayDemo />} />
+            <Route path="/what-we-do" element={<WhatWeDo />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/rehabilitation" element={<Rehabilitation />} />
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
