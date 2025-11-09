@@ -1,48 +1,8 @@
-import React, { useState } from 'react';
-import { 
-  Box, 
-  Button,
-  Container, 
-  Typography, 
-  Paper, 
-  Link,
-  Tabs,
-  Tab,
-  Divider,
-  useTheme,
-  useMediaQuery
-} from '@mui/material';
+import React from 'react';
+import { Box, Container, Typography, Button, Paper } from '@mui/material';
 import { motion } from 'framer-motion';
 
-function TabPanel({ children, value, index, ...other }) {
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`rehab-tabpanel-${index}`}
-      aria-labelledby={`rehab-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
-    </div>
-  );
-}
-
-function a11yProps(index) {
-  return {
-    id: `rehab-tab-${index}`,
-    'aria-controls': `rehab-tabpanel-${index}`,
-  };
-}
-
-const Rehabilitation = () => {
-  const theme = useTheme();
-  // Research section coming soon state
-
+const GamePage = () => {
   return (
     <Box sx={{ 
       py: 8, 
@@ -62,28 +22,27 @@ const Rehabilitation = () => {
             sx={{ 
               color: '#F8B55F', 
               fontWeight: 'bold', 
-              mb: 4,
+              mb: 6,
               textAlign: 'center',
               textShadow: '0 0 10px rgba(248, 181, 95, 0.5)'
             }}
           >
-            The Research Behind Our Game
+            Our Games
           </Typography>
 
-          {/* Game Section - Moved to top */}
           <Paper 
             elevation={6} 
             component={motion.div}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             sx={{ 
               mb: 6, 
-              background: 'linear-gradient(45deg, rgba(61, 54, 92, 0.8) 0%, rgba(124, 69, 133, 0.8) 100%)',
+              background: 'linear-gradient(45deg, rgba(61, 54, 92, 0.9) 0%, rgba(124, 69, 133, 0.9) 100%)',
               backdropFilter: 'blur(10px)',
               borderRadius: 4,
               border: '1px solid rgba(248, 181, 95, 0.3)',
-              p: 5,
+              p: { xs: 3, md: 5 },
               textAlign: 'center',
               '&:hover': {
                 transform: 'translateY(-3px)',
@@ -102,7 +61,7 @@ const Rehabilitation = () => {
                 fontSize: { xs: '1.8rem', md: '2.2rem' }
               }}
             >
-              Try Our Reaction Time Game
+              Reaction Time Module
             </Typography>
             <Typography 
               variant="h5" 
@@ -116,7 +75,7 @@ const Rehabilitation = () => {
                 lineHeight: 1.6
               }}
             >
-              Experience our space-themed reaction time challenge and test your reflexes in an engaging way!
+              Test and improve your reaction time with our space-themed challenge. Perfect for cognitive training and fun!
             </Typography>
             <motion.div
               whileHover={{ scale: 1.03 }}
@@ -151,49 +110,31 @@ const Rehabilitation = () => {
             </motion.div>
           </Paper>
 
-          {/* Research Section */}
-          <Paper 
-            elevation={6} 
+          <Typography 
+            variant="h4" 
+            component="h2" 
             sx={{ 
-              mb: 4, 
-              background: 'rgba(255, 255, 255, 0.05)',
-              backdropFilter: 'blur(10px)',
-              borderRadius: 4,
-              border: '1px solid rgba(248, 181, 95, 0.2)'
+              color: '#F8B55F', 
+              mt: 8,
+              mb: 4,
+              textAlign: 'center',
+              fontWeight: 'bold'
             }}
           >
-            <Box sx={{ p: 6, textAlign: 'center' }}>
-              <Typography variant="h4" component="h2" sx={{ color: '#F8B55F', mb: 3, fontWeight: 'bold' }}>
-                Research Section Coming Soon
-              </Typography>
-              <Typography variant="body1" sx={{ color: '#fff', mb: 4, lineHeight: 1.8, maxWidth: '800px', mx: 'auto' }}>
-                We're currently working on compiling our research findings. Our team is dedicated to providing you with detailed, 
-                evidence-based information about the science behind our game. Please check back soon for updates!
-              </Typography>
-              <Box 
-                component={motion.div}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                sx={{
-                  display: 'inline-block',
-                  px: 4,
-                  py: 2,
-                  bgcolor: 'rgba(248, 181, 95, 0.1)',
-                  borderRadius: 2,
-                  border: '1px solid rgba(248, 181, 95, 0.3)'
-                }}
-              >
-                <Typography variant="h6" sx={{ color: '#F8B55F' }}>Stay Tuned!</Typography>
-              </Box>
-            </Box>
-          </Paper>
-          
-          <Typography variant="body2" color="#aaa" align="center" sx={{ mt: 4 }}>
-            Need help? Contact us at{' '}
-            <Link href="mailto:officalastrorehab@gmail.com" color="#F8B55F">
-              officalastrorehab@gmail.com
-            </Link>
+            More Games Coming Soon!
+          </Typography>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              color: '#fff', 
+              textAlign: 'center',
+              maxWidth: '800px',
+              mx: 'auto',
+              mb: 6
+            }}
+          >
+            We're constantly developing new and exciting games to help with cognitive training and rehabilitation.
+            Check back soon for updates!
           </Typography>
         </motion.div>
       </Container>
@@ -201,4 +142,4 @@ const Rehabilitation = () => {
   );
 };
 
-export default Rehabilitation;
+export default GamePage;

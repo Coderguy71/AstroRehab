@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const navItems = [
     { text: 'What We Do', path: '/what-we-do' },
-    { text: 'Game Play Demo', path: '/gameplay' },
+    { text: 'Games', path: '/games' },
     { text: 'Team', path: '/team' },
     { text: 'Contact', path: '/contact' },
     { text: 'Rehabilitation', path: '/rehabilitation' }
@@ -80,17 +80,52 @@ const Navbar = () => {
               component={RouterLink}
               to={item.path}
               sx={{
-                color: '#F8B55F',
+                color: item.text === 'Games' ? '#F8B55F' : '#F8B55F',
                 mx: 1,
+                fontWeight: item.text === 'Games' ? 'bold' : 'normal',
+                fontSize: item.text === 'Games' ? '1.05rem' : '1rem',
+                position: 'relative',
+                '&:after': item.text === 'Games' ? {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '10%',
+                  width: '80%',
+                  height: '2px',
+                  backgroundColor: '#F8B55F',
+                  transform: 'scaleX(1)',
+                  transition: 'transform 0.3s ease',
+                } : {},
                 '&:hover': {
                   color: '#C95792',
                   background: 'rgba(248, 181, 95, 0.1)',
-                  transform: 'translateY(-2px)'
+                  transform: 'translateY(-2px)',
+                  '&:after': item.text === 'Games' ? {
+                    transform: 'scaleX(1.2)',
+                    backgroundColor: '#C95792',
+                  } : {}
                 },
                 transition: 'all 0.3s ease',
               }}
             >
               {item.text}
+              {item.text === 'Games' && (
+                <Box 
+                  component="span"
+                  sx={{
+                    ml: 1,
+                    fontSize: '0.7rem',
+                    background: 'linear-gradient(45deg, #F8B55F, #C95792)',
+                    color: '#1A1A2E',
+                    px: 1,
+                    py: 0.2,
+                    borderRadius: 4,
+                    fontWeight: 'bold',
+                  }}
+                >
+                  NEW
+                </Box>
+              )}
             </Button>
           ))}
         </Box>

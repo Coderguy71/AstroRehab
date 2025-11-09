@@ -7,6 +7,7 @@ import WhatWeDo from './components/WhatWeDo';
 import Team from './components/Team';
 import Contact from './components/Contact';
 import Rehabilitation from './components/Rehabilitation';
+import GamePage from './components/GamePage';
 import theme from './theme';
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/rehabilitation" element={<Rehabilitation />} />
+            <Route path="/games" element={<GamePage />} />
           </Routes>
         </div>
       </Router>
