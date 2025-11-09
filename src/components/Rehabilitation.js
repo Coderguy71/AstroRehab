@@ -106,6 +106,52 @@ const Rehabilitation = () => {
             </Box>
           </Paper>
           
+          <Paper 
+            elevation={6} 
+            sx={{ 
+              mb: 4, 
+              mt: 6,
+              background: 'rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: 4,
+              border: '1px solid rgba(248, 181, 95, 0.2)',
+              p: 4,
+              textAlign: 'center'
+            }}
+          >
+            <Typography variant="h4" component="h2" sx={{ color: '#F8B55F', mb: 3, fontWeight: 'bold' }}>
+              Try Our Reaction Time Game
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#fff', mb: 4, lineHeight: 1.8, maxWidth: '800px', mx: 'auto' }}>
+              Experience our space-themed reaction time challenge and test your reflexes in an engaging way!
+            </Typography>
+            <Button
+              component="a"
+              href="https://astrorehab.itch.io/reactiontimemodule"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="contained"
+              size="large"
+              sx={{
+                bgcolor: '#F8B55F',
+                color: '#1A1A2E',
+                fontWeight: 'bold',
+                px: 4,
+                py: 1.5,
+                '&:hover': {
+                  bgcolor: '#e6a34a',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 4px 12px rgba(248, 181, 95, 0.3)',
+                },
+                transition: 'all 0.3s ease',
+                fontSize: '1.1rem',
+                borderRadius: 2
+              }}
+            >
+              Play Now on itch.io
+            </Button>
+          </Paper>
+          
           <Typography variant="body2" color="#aaa" align="center" sx={{ mt: 4 }}>
             Need help? Contact us at{' '}
             <Link href="mailto:officalastrorehab@gmail.com" color="#F8B55F">
